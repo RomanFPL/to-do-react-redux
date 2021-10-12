@@ -63,8 +63,8 @@ export const slice = createSlice({
     reducers: {
         addNewRow: (state, action) => ({
             ...state,
-            notes: state.notes.push(action.payload)
-        })
+            notes: [...state.notes, action.payload]
+        }),
     }
 })
 
