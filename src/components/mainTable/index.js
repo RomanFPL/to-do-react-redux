@@ -1,6 +1,11 @@
+import { useSelector } from "react-redux";
+import { selectItemList } from "../../store/starterList";
 import Row from "../row";
 
+
 const MainTable = () => {
+    const items = useSelector(selectItemList);
+    console.log(items);
     return (
         <div className="wrap-table mb-5">
             <div className="name-table m-2">
@@ -26,7 +31,7 @@ const MainTable = () => {
                 </tr>
                 </thead>
                 <tbody className="note-table-main">
-                    <Row/>
+                    {items.map((item) => <Row key={item.id} item={item}/>)}
                 </tbody>
             </table>
             <div className="d-flex justify-content-end">
