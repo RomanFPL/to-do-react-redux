@@ -69,11 +69,21 @@ export const slice = createSlice({
             ...state,
             notes: [...state.notes.map(row => row.id === action.payload ? Object.assign({}, row, {status: +!row.status} ) : row )
             ]
-        })
+        }),
+        deleteRowById: (state, action) => deleteNote(state, action)
     }
 })
 
-export const { addNewRow, changeSatusArchive } = slice.actions;
+const deleteNote = (state, action) => {
+    const spliced = [...state.notes]
+    spliced.splice(state.notes.findIndex(item => item.id === action.payload),1);
+    return{...state,
+        notes: spliced,
+    }
+
+};
+
+export const { addNewRow, changeSatusArchive, deleteRowById } = slice.actions;
 
 export const selectItemList = state => state.itemList.notes
 
