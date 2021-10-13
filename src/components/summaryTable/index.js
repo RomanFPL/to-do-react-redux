@@ -1,11 +1,11 @@
 const SummaryTable = () => {
     return (
-        <div class="wrap-table">
-            <div class="name-table">
-                <h2 class="text-center">
+        <div className="wrap-table">
+            <div className="name-table">
+                <h2 className="text-center">
                     Summary
                 </h2>
-                <table class="summary-table table table-light table-hover">
+                <table className="summary-table table table-light table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Note category</th>

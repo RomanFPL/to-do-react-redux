@@ -1,3 +1,5 @@
+import Row from "../row";
+
 const MainTable = () => {
     return (
         <div className="wrap-table mb-5">
@@ -24,7 +26,7 @@ const MainTable = () => {
                 </tr>
                 </thead>
                 <tbody className="note-table-main">
-
+                    <Row/>
                 </tbody>
             </table>
             <div className="d-flex justify-content-end">
