@@ -2,12 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewRow } from "../../store/starterList";
 import { changeStatusModal } from "../../store/statusApp";
-
-const gatCurentDate = () => {
-    const date = new Date();
-    const month = date.getMonth()+1;
-    return `${date.getFullYear()}-${month<10 ? "0"+month : month}-${date.getDate()<10 ? "0"+date.getDate() : date.getDate()}`;
-}
+import { gatCurentDate, geterateRandomKey } from "../../utits";
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -35,7 +30,7 @@ const Modal = () => {
         e.preventDefault();
         if(inputName || inputCategory || inputContent){
             const rowData = {
-                id: (Math.random() + 1).toString(36).substring(4),
+                id: geterateRandomKey(),
                 name: inputName,
                 date: inputDate,
                 category: inputCategory,

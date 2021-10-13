@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux"
+import { selectItemList } from "../../store/starterList"
+import { convertToSummaryData } from "../../utits"
+import RowSummary from "../rowSummary"
+
 const SummaryTable = () => {
+    const notes = useSelector(selectItemList);
+    const sumItems = convertToSummaryData(notes);
     return (
         <div className="wrap-table">
             <div className="name-table">
@@ -14,7 +21,8 @@ const SummaryTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {sumItems.map(item => (<RowSummary key={item.key} item={item}/>))}
+                        
                     </tbody>
                 </table>
             </div>
