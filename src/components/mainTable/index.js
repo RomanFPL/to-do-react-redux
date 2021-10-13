@@ -10,6 +10,8 @@ const MainTable = () => {
     const items = useSelector(selectItemList);
     const tableStatus = useSelector(selectTableSatus);
 
+    console.log(items);
+
 
     const itemsSorted = (items, status) => {
         return items.reduce((acc, row)  => { 

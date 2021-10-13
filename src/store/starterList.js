@@ -65,10 +65,15 @@ export const slice = createSlice({
             ...state,
             notes: [...state.notes, action.payload]
         }),
+        changeSatusArchive: (state, action) => ({
+            ...state,
+            notes: [...state.notes.map(row => row.id === action.payload ? Object.assign({}, row, {status: +!row.status} ) : row )
+            ]
+        })
     }
 })
 
-export const { addNewRow } = slice.actions;
+export const { addNewRow, changeSatusArchive } = slice.actions;
 
 export const selectItemList = state => state.itemList.notes
 
