@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNewRow, selectItemList } from '../../store/starterList';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Modal from "../modal"
+import SummaryTable from '../summaryTable';
 
 function App() {
   const items = useSelector(selectItemList);
@@ -54,6 +55,7 @@ function App() {
                   <button type="button" className="add-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add a row</button>
               </div>
               </div>
+      <SummaryTable/>
     </section>
   );
 }
