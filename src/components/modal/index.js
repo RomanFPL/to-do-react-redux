@@ -1,36 +1,28 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewRow } from "../../store/starterList";
-import { changeStatusModal } from "../../store/statusApp";
-import { gatCurentDate, geterateRandomKey } from "../../utits";
+import { changeStatusModal, selectCurentRow, setSelectedRow } from "../../store/statusApp";
+import { findDateText, gatCurentDate, generateRandomKey} from "../../utits";
 
 const Modal = () => {
+    const curentRow = useSelector(selectCurentRow);
+    if(Object.keys(curentRow).length === 0){
+        console.log("empty")
+    }
+    console.log(curentRow);
     const dispatch = useDispatch();
     const [inputName, setInputName] = useState("");
     const [inputDate, setInputDate] = useState(gatCurentDate());
     const [inputCategory, setInputCategory] = useState("");
     const [inputContent, setInpuContent] = useState("");
     const [inputDates, setInputDates] = useState("");
+    
 
-    
-    
-    const findDateText = (str) => {
-        const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/gm;
-        const findedData = str.split(" ").reduce((acc, word) => {
-            if(word.match(regex) !== null){
-                acc.push(word.match(regex));
-            }
-            return acc;
-            
-        }, []).join(", ")
-        return findedData;
-    }
-    
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(inputName || inputCategory || inputContent){
+        if(inputName && inputCategory && inputContent){
             const rowData = {
-                id: geterateRandomKey(),
+                id: generateRandomKey(),
                 name: inputName,
                 date: inputDate,
                 category: inputCategory,
@@ -40,11 +32,15 @@ const Modal = () => {
             }
             
             dispatch(addNewRow(rowData));
-            dispatch(changeStatusModal(false))
-
+            handleCloseModal();
         } else {
             alert('The "Name","Category" and "Content" fields should contain some text!')
         }
+    }
+
+    const handleCloseModal = () => {
+        dispatch(changeStatusModal(false))
+        dispatch(setSelectedRow({}))
     }
 
     return (
@@ -54,7 +50,7 @@ const Modal = () => {
                 <form onSubmit={handleSubmit} className="curent-row">
                     <div className="modal-header">
                         <h5 className="modal-title">Current row</h5>
-                        <button onClick={() => dispatch(changeStatusModal(false))} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button onClick={() => handleCloseModal()} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
                         <table className="note-table table table-light table-hover">
@@ -135,7 +131,7 @@ const Modal = () => {
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <button onClick={() => dispatch(changeStatusModal(false))} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button onClick={() => handleCloseModal()} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" className="btn btn-success">Save changes</button>
                     </div>
                 </form>

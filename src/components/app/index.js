@@ -8,11 +8,13 @@ import { selectModalSatus } from "../../store/statusApp";
 function App() {
   const modalStatus = useSelector(selectModalSatus);
   return (
-    <section className="main container">
+    <>
       {modalStatus && <Modal/>}
-      <MainTable/>
-      <SummaryTable/>
-    </section>
+      <section className="main container">
+        <MainTable/>
+        <SummaryTable/>
+      </section>
+    </>
   );
 }
 
