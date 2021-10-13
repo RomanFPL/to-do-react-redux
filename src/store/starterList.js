@@ -70,20 +70,28 @@ export const slice = createSlice({
             notes: [...state.notes.map(row => row.id === action.payload ? Object.assign({}, row, {status: +!row.status} ) : row )
             ]
         }),
-        deleteRowById: (state, action) => deleteNote(state, action)
+        deleteRowById: (state, action) => deleteNote(state, action),
+        editRowById: (state, action) => editNote(state, action)
     }
 })
 
 const deleteNote = (state, action) => {
-    const spliced = [...state.notes]
+    const spliced = [...state.notes];
     spliced.splice(state.notes.findIndex(item => item.id === action.payload),1);
     return{...state,
         notes: spliced,
     }
-
 };
 
-export const { addNewRow, changeSatusArchive, deleteRowById } = slice.actions;
+const editNote = (state, action) => {
+    const spliced = [...state.notes];
+    spliced.splice(state.notes.findIndex(item => item.id === action.payload.id), 1, action.payload);
+    return{...state,
+        notes: spliced,
+    }
+}
+
+export const { addNewRow, changeSatusArchive, deleteRowById, editRowById } = slice.actions;
 
 export const selectItemList = state => state.itemList.notes
 

@@ -10,9 +10,6 @@ const MainTable = () => {
     const items = useSelector(selectItemList);
     const tableStatus = useSelector(selectTableSatus);
 
-    console.log(items);
-
-
     const itemsSorted = (items, status) => {
         return items.reduce((acc, row)  => { 
             row.status === status && acc.push(row)
@@ -20,6 +17,7 @@ const MainTable = () => {
         },[])
     }
 
+    console.log(items)
 
     return (
         <div className="wrap-table mb-5">

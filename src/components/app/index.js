@@ -7,6 +7,7 @@ import { selectModalSatus } from "../../store/statusApp";
 
 function App() {
   const modalStatus = useSelector(selectModalSatus);
+  modalStatus && (document.body.style.overflow = "hidden");
   return (
     <>
       {modalStatus && <Modal/>}

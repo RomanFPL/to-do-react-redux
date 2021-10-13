@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewRow } from "../../store/starterList";
+import { addNewRow, editRowById } from "../../store/starterList";
 import { changeStatusModal, selectCurentRow, setSelectedRow } from "../../store/statusApp";
 import { findDateText, gatCurentDate, generateRandomKey} from "../../utits";
 
 const Modal = () => {
     const curentRow = useSelector(selectCurentRow);
-    if(Object.keys(curentRow).length === 0){
-        console.log("empty")
-    }
-    console.log(curentRow);
+
+    const name = curentRow.name || "";
+    const date = curentRow.date || gatCurentDate();
+    const category = curentRow.category || "";
+    const dates = curentRow.dates || "";
+    const content = curentRow.content || "";
+
     const dispatch = useDispatch();
-    const [inputName, setInputName] = useState("");
-    const [inputDate, setInputDate] = useState(gatCurentDate());
-    const [inputCategory, setInputCategory] = useState("");
-    const [inputContent, setInpuContent] = useState("");
-    const [inputDates, setInputDates] = useState("");
+    const [inputName, setInputName] = useState(name);
+    const [inputCategory, setInputCategory] = useState(category);
+    const [inputDates, setInputDates] = useState(dates);
+    const [inputContent, setInpuContent] = useState(content);
     
 
     const handleSubmit = (e) => {
@@ -24,14 +26,20 @@ const Modal = () => {
             const rowData = {
                 id: generateRandomKey(),
                 name: inputName,
-                date: inputDate,
+                date: date,
                 category: inputCategory,
                 content: inputContent,
                 dates: inputDates,
                 status: 1,
             }
-            
-            dispatch(addNewRow(rowData));
+
+            if(curentRow.id){
+                rowData.id = curentRow.id
+                dispatch(editRowById(rowData));
+            } else {
+                dispatch(addNewRow(rowData));            
+            }
+
             handleCloseModal();
         } else {
             alert('The "Name","Category" and "Content" fields should contain some text!')
@@ -44,7 +52,7 @@ const Modal = () => {
     }
 
     return (
-        <div className="modal bg-secondary" tabIndex="-1">
+        <div className="modal bg-grey" tabIndex="-1">
             <div className="modal-dialog modal-row-display">
                 <div className="modal-content">
                 <form onSubmit={handleSubmit} className="curent-row">
@@ -65,7 +73,7 @@ const Modal = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">
+                                    <td>
                                         <input 
                                             value={inputName} 
                                             onChange={(e) => setInputName(e.target.value)} 
@@ -76,12 +84,12 @@ const Modal = () => {
                                             aria-label="Username" 
                                             aria-describedby="basic-addon1" 
                                             autoComplete="false"/>
-                                    </th>
+                                    </td>
                                     <td>
                                         <input 
                                             type="date" 
                                             name="date" 
-                                            value={inputDate} 
+                                            value={date} 
                                             className="form-row-value form-control" 
                                             placeholder="Date" 
                                             aria-label="Username" 

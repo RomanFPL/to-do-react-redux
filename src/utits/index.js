@@ -2,7 +2,6 @@ const generateRandomKey = () => {
     return (Math.random() + 1).toString(36).substring(4)
 }
 
-
 const gatCurentDate = () => {
     const date = new Date();
     const month = date.getMonth()+1;
@@ -21,7 +20,6 @@ const convertToSummaryData = (valueList) => {
         return uniqueData;
     })
 }
-
     
 const findDateText = (str) => {
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/gm;
@@ -35,11 +33,9 @@ const findDateText = (str) => {
     return findedData;
 }
 
-
-
 export {
     generateRandomKey,
     gatCurentDate,
     convertToSummaryData,
-    findDateText
+    findDateText,
 }

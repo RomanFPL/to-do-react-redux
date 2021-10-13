@@ -2,6 +2,10 @@
 	display: block !important;
 }
 
+.bg-grey{
+	background-color: #58585875;
+}
+
 .onIcon {
 	cursor: pointer; }
 	.onIcon:hover {
