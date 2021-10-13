@@ -1,13 +1,45 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.modal{
+	display: block !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+.onIcon {
+	cursor: pointer; }
+	.onIcon:hover {
+	  color: #486ac9; }
+	  .onIcon:hover svg {
+		fill: #486ac9; }
+	.onIcon.green:hover {
+	  fill: #48c948 !important; }
+	.onIcon.orange:hover {
+	  fill: #c9b648 !important; }
+	.onIcon.red:hover {
+	  fill: #c94848 !important; }
+	.onIcon.active {
+	  color: #486ac9; }
+	  .onIcon.active svg {
+		fill: #486ac9; }
+  
+  .fixed-row-width {
+	width: 130px; }
+  
+  .responsive-row-width {
+	width: 15%; }
+  
+  .table-add-row {
+	display: none; }
+	.table-add-row.active {
+	  display: table-row; }
+  
+  .tbody-hidden {
+	display: none; }
+  
+  .tbody-visible {
+	display: contents; }
+  
+  .unvisible {
+	display: none; }
+  
+  @media (min-width: 576px) {
+	.modal-row-display {
+	  max-width: 95vw !important; } }
+  

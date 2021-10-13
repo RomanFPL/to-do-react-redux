@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewRow, selectItemList } from '../store/starterList';
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import 'bootstrap';
-import './App.css';
+import { addNewRow, selectItemList } from '../../store/starterList';
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import Modal from "../modal"
 
 function App() {
   const items = useSelector(selectItemList);
@@ -19,6 +18,7 @@ function App() {
   console.log(items);
   return (
     <section className="main container">
+      {/* <Modal/> */}
               <div className="wrap-table mb-5">
 
               <div className="name-table m-2">
