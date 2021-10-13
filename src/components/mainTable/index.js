@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemList } from "../../store/starterList";
-import { changeStatusModal, changeStatusTable, selectModalSatus, selectTableSatus } from "../../store/statusApp";
+import { changeStatusModal, changeStatusTable, selectTableSatus } from "../../store/statusApp";
 import Row from "../row";
 
 
