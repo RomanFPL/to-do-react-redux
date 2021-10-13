@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemList } from "../../store/starterList";
-import { changeStatusTable, selectTableSatus } from "../../store/statusApp";
+import { changeStatusModal, changeStatusTable, selectModalSatus, selectTableSatus } from "../../store/statusApp";
 import Row from "../row";
 
 
 const MainTable = () => {
     const dispatch = useDispatch();
-    const tableStatus = useSelector(selectTableSatus);
+
     const items = useSelector(selectItemList);
+    const tableStatus = useSelector(selectTableSatus);
 
 
     const itemsSorted = (items, status) => {
@@ -47,7 +48,7 @@ const MainTable = () => {
                 </tbody>
             </table>
             <div className="d-flex justify-content-end">
-                <button type="button" className="add-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add a row</button>
+                <button onClick={() => dispatch(changeStatusModal(true))} type="button" className="add-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add a row</button>
             </div>
         </div>
     )

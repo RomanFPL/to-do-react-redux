@@ -1,11 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+import { changeStatusModal, selectModalSatus } from "../../store/statusApp";
+
 const Modal = () => {
+
+    const modalStatus = useSelector(selectModalSatus);
+    const dispatch = useDispatch()
+
+
+    const gatCurentDate = () => {
+        const date = new Date();
+        const month = date.getMonth()+1;
+        return `${date.getFullYear()}-${month<10 ? "0"+month : month}-${date.getDate()<10 ? "0"+date.getDate() : date.getDate()}`;
+    }
+
     return (
-        <div className="modal bg-secondary" tabindex="-1">
+        <div className="modal bg-secondary" tabIndex="-1">
             <div className="modal-dialog modal-row-display">
                 <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title">Current row</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button onClick={() => dispatch(changeStatusModal(false))} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
                     <table className="note-table table table-light table-hover">
@@ -21,14 +35,14 @@ const Modal = () => {
                         <tbody>
                             <tr>
                                 <th scope="row">
-                                    <input type="text" name="name" className="form-row-value form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" autocomplete="false"/>
+                                    <input type="text" name="name" className="form-row-value form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" autoComplete="false"/>
                                 </th>
                                 <td>
-                                    <input type="date" name="date" className="form-row-value form-control" placeholder="Date" aria-label="Username" aria-describedby="basic-addon1" disabled/>
+                                    <input type="date" name="date" value={gatCurentDate()} className="form-row-value form-control" placeholder="Date" aria-label="Username" aria-describedby="basic-addon1" disabled/>
                                 </td>
                                 <td>
                                     <select className="form-row-value form-select" name="category" aria-label="Default select example">
-                                        <option selected>Open category</option>
+                                        <option defaultValue>Open category</option>
                                         <option value="1">Task</option>
                                         <option value="2">Random Thought</option>
                                         <option value="3">Idea</option>
@@ -45,7 +59,7 @@ const Modal = () => {
                     </table>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button onClick={() => dispatch(changeStatusModal(false))} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" className="btn btn-success">Save changes</button>
                 </div>
                 </div>
