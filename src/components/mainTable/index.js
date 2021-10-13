@@ -17,7 +17,7 @@ const MainTable = () => {
         },[])
     }
 
-    console.log(items)
+    const visibleRows = itemsSorted(items, tableStatus).map((item) => <Row key={item.id} item={item}/>);
 
     return (
         <div className="wrap-table mb-5">
@@ -44,7 +44,7 @@ const MainTable = () => {
                 </tr>
                 </thead>
                 <tbody className="note-table-main">
-                    {itemsSorted(items, tableStatus).map((item) => <Row key={item.id} item={item}/>)}
+                    {visibleRows}
                 </tbody>
             </table>
             <div className="d-flex justify-content-end">
