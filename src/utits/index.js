@@ -22,7 +22,9 @@ const convertToSummaryData = (valueList) => {
 }
     
 const findDateText = (str) => {
+    //eslint-disable-next-line
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/gm;
+    //eslint-disable-line
     const findedData = str.split(" ").reduce((acc, word) => {
         if(word.match(regex) !== null){
             acc.push(word.match(regex));
