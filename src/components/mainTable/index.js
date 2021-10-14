@@ -47,9 +47,11 @@ const MainTable = () => {
                     {visibleRows}
                 </tbody>
             </table>
-            <div className="d-flex justify-content-end">
-                <button onClick={() => dispatch(changeStatusModal(true))} type="button" className="add-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add a row</button>
-            </div>
+            {tableStatus && (
+                <div className="d-flex justify-content-end">
+                    <button onClick={() => dispatch(changeStatusModal(true))} type="button" className="add-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add a row</button>
+                </div>
+            )}
         </div>
     )
 }

@@ -11,7 +11,7 @@ const Row = ({item}) => {
             <td>{content}</td>
             <td>{dates}</td>
             <td>
-                {status ? <MainTableBtn item={item}/> : <ArchiveTableBtn item={item}/>}
+                {status ? <MainTableBtn item={item}/> : <ArchiveTableBtn id={id}/>}
             </td>
             </tr>
     )

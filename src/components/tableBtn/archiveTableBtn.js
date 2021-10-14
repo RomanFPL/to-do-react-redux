@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
 import { changeSatusArchive } from "../../store/starterList";
 
-const ArchiveTableBtn = ({item}) => {
-    const {id} = item;
+const ArchiveTableBtn = ({id}) => {
     const dispatch = useDispatch(); 
     return (
         <svg onClick={() => dispatch(changeSatusArchive(id))} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="icon-unarchive bi bi-arrow-up-square onIcon mx-1 orange" viewBox="0 0 16 16">
